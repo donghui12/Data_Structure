@@ -20,28 +20,26 @@ class Tree:
         else:
             self.left.add_left(data)
 
-    def add_Right(self,data):
+    def add_right(self,data):
         if self.right == None:
             self.right = Tree(data)
         else:
             self.right.add_right(data)
 
-    def get_tree(self):
-        print(self.root, ' ', end="")
-        if self.left == None and self.right == None:
-            return self.root
-        elif self.left == None:
-            self.right.get_tree()
-        else:
-            self.left.get_tree()
+    def get_tree(self, treenode):
+        if treenode is None:
+            return ""
+        print(treenode.root, end=" ")
+        if treenode.left:
+            self.get_tree(treenode.left)
+        if treenode.right:
+            self.get_tree(treenode.right)
         
         
 
 if __name__=="__main__":
     tree = Tree(5)
     tree.add_left(4)
+    tree.add_right(6)
     tree.add_left(3)
-    print(tree.get_root())
-    print(tree.get_leftchild())
-    print(tree.get_rightchild())
-    print(tree.get_tree())
+    print(tree.get_tree(tree))
